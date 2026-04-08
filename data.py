@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 data = {
   'hours' : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -12,13 +13,17 @@ df = pd.DataFrame(data)
 x = df[['hours']]
 y = df['marks']
 
+# splitting the data
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 # creating the model.
 model = LinearRegression()
 
 # training the model
-model.fit(x, y)
+model.fit(x_train, y_train)
 
 # make prediction
-prediction = model.predict(pd.DataFrame({'hours': [5]}))
-print(prediction)
+prediction = model.predict(x_test)
+
+print("Predictions:", prediction)
+print("Actual:", y_test.values)
