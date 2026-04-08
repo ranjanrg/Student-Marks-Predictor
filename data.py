@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
 
 
 data = {
@@ -31,9 +32,16 @@ y_pred_line = model.predict(x)
 print("Predictions:", prediction)
 print("Actual:", y_test.values)
 
+
+# Mean absolute error
+error = mean_absolute_error(y_test, prediction)
+print("Mean absolute error: ", error)
+
+# visualize the preiction
 plt.scatter(x, y)
-plt.plot(y_pred_line)
-plt.xlabel = "Hours Studied"
-plt.ylabel = "Marks Scored"
-plt.title = "Hours vs Marks"
+plt.plot(x, y_pred_line)
+plt.xlabel("Hours Studied")
+plt.title = ("Hours vs Marks")
+plt.ylabel = ("Marks Scored")
 plt.show()
+
